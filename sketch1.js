@@ -1,34 +1,37 @@
 
-let xPos = 50;
-let yPos = 50;
+let circle = {
+  xPos = 50,
+  yPos = 50,
+  height = 50,
+  width = 50,
+  xSPEED = 4,
+  ySPEED = 7
+}
 
-let xxPos = 70;
-let yxPos = 22;
-
-let xSPEED = 4;
-let ySPEED = 7;
+let background = {
+  r = 255,
+  g = 255,
+  b = 40
+}
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
-
   }
   
   function draw() {
 
-    ellipse(xPos, yPos ,50 ,50 );
-    fill(255,255,40);
+    ellipse(circle.xPos, circle.yPos, circle.width, circle.height);
+    fill(background.r,background.g,background.b);
 
+    circle.xPos+= circle.xSPEED;
+    circle.yPos+= circle.ySPEED;
 
-    xPos+= xSPEED;
-    yPos+= ySPEED;
-
-
-    if(xPos > windowWidth-25 || xPos < 25){
-      xSPEED = xSPEED * -1.125;
+    if(circle.xPos > windowWidth-25 || circle.xPos < 25){
+      circle.xSPEED = circle.xSPEED * -1.125;
     }
-    if(yPos > windowHeight-25 || yPos < 25){
-      ySPEED = -ySPEED;
+    if(circle.yPos > windowHeight-25 || circle.yPos < 25){
+      circle.ySPEED = circle.ySPEED * -1;
     }
 
 
