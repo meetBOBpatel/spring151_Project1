@@ -13,6 +13,7 @@ let circles = {
     speed: 1
 };
 
+// let frameCount = 30;
 function setup(){
     createCanvas(windowWidth, windowHeight);
     rectMode(CENTER);
@@ -24,26 +25,23 @@ function draw(){
 
     push();
 
+    for(let i = 0; i < 8; i ++){
     noFill();
     translate(width / 2, height / 2);
-    rotate(45);
-    stroke('yellow');
-    strokeWeight(5);
+    rotate(90 * i / 8);
+    let tx = 200 * noise(0.03*frameCount+ 50);
+    translate(tx, 0);
+
     rect(circles.x, circles.y, circles.wid, circles.hei);
 
-    for(let i = 0; i < 50; i++){
-        circles.wid = circles.wid + 1;
-        circles.hei = circles.hei + 1;
-        i+=2;
+
+    // circles.wid = circles.wid + 1;
+    // circles.hei = circles.hei + 1;
+     pop();    
     }
 
-    for(let i = 100; i > 0; i--){
-        circles.wid = circles.wid - 1;
-        circles.hei = circles.hei - 1;
-        i-=2;
-    }
-     pop();    
-    
+     console.log("Width: " + circles.wid);
+     console.log("Height: " + circles.hei);
 
     
 }
