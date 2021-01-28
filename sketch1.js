@@ -20,12 +20,14 @@ function setup() {
   
 function draw() {
 
+  background(0);
+
   ellipse(circle.xPos, circle.yPos, circle.width, circle.height);
   fill(color.r,color.g,color.b);
 
   circle.xPos+= circle.xSPEED;
   circle.yPos+= circle.ySPEED;
-
+  
   color.r = random(255);
   color.g = random(255);
   color.b = random(255);
@@ -34,12 +36,25 @@ function draw() {
   circle.height = random(50);
 
   if(circle.xPos > windowWidth-25 || circle.xPos < 25){
-    circle.xSPEED = circle.xSPEED * -1;
+    circle.xSPEED = circle.xSPEED * -1.01;
+    ellipse(circle.xPos*-1, circle.yPos*-1, circle.width, circle.height);
 
   }
+
   if(circle.yPos > windowHeight-25 || circle.yPos < 25){
-    circle.ySPEED = circle.ySPEED * -1;
+    circle.ySPEED = circle.ySPEED * -1.01;
 
   }
 
+}
+
+function keyPressed() {
+  if(keyCode == UP_ARROW) {
+      circle.xSPEED = circle.xSPEED * -1.25;
+  } else if (keyCode == DOWN_ARROW) {
+      circle.xSPEED = circle.xSPEED * -1.25;
+      circle.ySPEED = circle.ySPEED * -1;
+  }
+  
+  return 0;
 }
