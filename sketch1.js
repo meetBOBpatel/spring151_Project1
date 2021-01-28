@@ -1,4 +1,4 @@
-let circle = {
+let recANG = {
   xPos: 50,
   yPos: 50,
   height:  50,
@@ -21,10 +21,10 @@ let VBar = {
 };
 
 let VBar2 = {
-  xPos: 100,
+  xPos: 300,
   yPos: 300,
   width: 100,
-  heght: 10,
+  heght: 100,
 };
 
 let VBar3 = {
@@ -50,35 +50,49 @@ function setup() {
 function draw() {
 
   background(0);
-  
-
-  ellipse(circle.xPos, circle.yPos, circle.width, circle.height);
   fill(color.r,color.g,color.b);
 
-  circle.xPos+= circle.xSPEED;
-  circle.yPos+= circle.ySPEED;
-  
-  color.r = random(255);
-  color.g = random(255);
-  color.b = random(255);
+  // recANG.width = random(50);
+  // recANG.height = random(50);
 
-  // circle.width = random(50);
-  circle.height = random(50);
-
-  if(circle.xPos > windowWidth-25 || circle.xPos < 25){
-    circle.xSPEED = circle.xSPEED * -1.00;
+  if(recANG.xPos > windowWidth-25 || recANG.xPos < 25){
+    recANG.xSPEED = recANG.xSPEED * -1.00;
   }
 
-  if(circle.yPos > windowHeight-25 || circle.yPos < 25){
-    circle.ySPEED = circle.ySPEED * -1.00;
+  if(recANG.yPos > windowHeight-25 || recANG.yPos < 25){
+    recANG.ySPEED = recANG.ySPEED * -1.00;
   }
+
+  if (recANG.xPos  + recANG.width > VBar2.xPos -5
+     && recANG.xPos< VBar2.xPos + VBar2.width 
+     && recANG.yPos + recANG.height > VBar2.yPos 
+    //  && recANG.yPos < VBar2.yPos + VBar2.height
+    )
+     {
+        
+      colorChange();
+      recANG.xSPEED = recANG.xSPEED * -1.00;
+
+      console.log("Hitting");
+  }
+
+
+  recANG.xPos+= recANG.xSPEED;
+  recANG.yPos+= recANG.ySPEED;
 
   rect(VBar.xPos, VBar.yPos, VBar.width, VBar.heght);
-  rect(VBar2.xPos, VBar2.yPos, VBar2.width, VBar2.heght);
   rect(VBar3.xPos, VBar3.yPos, VBar3.width, VBar3.heght);
+  rect(VBar2.xPos, VBar2.yPos, VBar2.width, VBar2.heght);
+
   rect(HoriBar.xPos, HoriBar.yPos, HoriBar.width, HoriBar.heght);
+  rect(recANG.xPos, recANG.yPos, recANG.width, recANG.height);
+
 
   return 0;
 }
-  
- 
+
+function colorChange(){
+  color.r = random(255);
+  color.g = random(255);
+  color.b = random(255);
+}
