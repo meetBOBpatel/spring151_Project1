@@ -1,8 +1,9 @@
-let recANG = {
+// Ball that moves around
+let ball = {
   xPos: 50,
   yPos: 50,
-  height: 75,
-  width: 75,
+  height: 30,
+  width: 30,
   xSPEED: 4,
   ySPEED: 7
 }
@@ -13,106 +14,195 @@ let color = {
   b: 40
 }
 
-let VBar = {
-  xPos: 500,
-  yPos: 550,
-  width: 150,
-  heght: 10,
-};
-
-let VBar2 = {
-  xPos: 350,
-  yPos: 250,
-  width: 100,
-  heght: 100,
-};
-
-let VBar3 = {
-  xPos: 1200,
-  yPos: 600,
-  width: 100,
-  heght: 10,
-};
-
-let HoriBar = {
-  xPos: 1000,
-  yPos: 290,
+let barrior = {
+  xPos: 85,
+  yPos: 235,
   width: 10,
   heght: 150,
 };
 
+let barrior2 = {
+  xPos: 400,
+  yPos: 550,
+  width: 10,
+  heght: 150,
+};
+
+let barrior3 = {
+  xPos: 600,
+  yPos: 375,
+  width: 150,
+  heght: 10,
+};
+
+let barrior4 = {
+  xPos: 1150,
+  yPos: 125,
+  width: 10,
+  heght: 150,
+};
+
+let barrior5= {
+  xPos: 1100,
+  yPos: 700,
+  width: 150,
+  heght: 10,
+};
+
+
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
+  background(51);
+  // angleMode(DEGREES);
 }
 
 function draw() {
 
-  background(0);
-  fill(color.r, color.g, color.b);
+background(51);
+// backgroundDisco();
 
-  // recANG.width = random(50);
-  // recANG.height = random(50);
+if (ball.xPos > windowWidth - 25 || ball.xPos < 25) {
+  ball.xSPEED = ball.xSPEED * -1.00;
+}
 
-  if (recANG.xPos > windowWidth - 25 || recANG.xPos < 25) {
-    recANG.xSPEED = recANG.xSPEED * -1.00;
-  }
+if (ball.yPos > windowHeight - 25 || ball.yPos < 25) {
+  ball.ySPEED = ball.ySPEED * -1.00;
+}
 
-  if (recANG.yPos > windowHeight - 25 || recANG.yPos < 25) {
-    recANG.ySPEED = recANG.ySPEED * -1.00;
-  }
+gettingHits(ball, barrior);
+gettingHits(ball, barrior2);
+gettingHits(ball, barrior3);
+gettingHits(ball, barrior4);
+gettingHits(ball, barrior5);
 
+ball.xPos += ball.xSPEED;
+ball.yPos += ball.ySPEED;
 
+  push();
+  
+    // colorChange();
+    fill(color.r, color.g, color.b);
+    mouseClicked(ball);
 
-  if (recANG.xPos + recANG.width + recANG.xSPEED>= VBar2.xPos
-    && recANG.xPos + recANG.xSPEED < VBar2.xPos + VBar2.width
-    && recANG.yPos + recANG.height > VBar2.yPos
-    && recANG.yPos < VBar2.yPos + VBar2.heght
-  ) {
-    colorChange();
-    recANG.xSPEED = recANG.xSPEED * -1.00;
-  }
+    rect(barrior.xPos, barrior.yPos, barrior.width, barrior.heght);
+    rect(barrior2.xPos, barrior2.yPos, barrior2.width, barrior2.heght);
+    rect(barrior3.xPos, barrior3.yPos, barrior3.width, barrior3.heght);
+    rect(barrior4.xPos, barrior4.yPos, barrior4.width, barrior4.heght);
+    rect(barrior5.xPos, barrior5.yPos, barrior5.width, barrior5.heght);
 
-  if (recANG.xPos + recANG.width >= VBar2.xPos
-    && recANG.xPos < VBar2.xPos + VBar2.width
-    && recANG.yPos + recANG.height +recANG.ySPEED> VBar2.yPos
-    && recANG.yPos + recANG.ySPEED < VBar2.yPos + VBar2.heght
-  ) {
-    colorChange();
-    recANG.ySPEED = recANG.ySPEED * -1.00;
-  }
+  pop();
 
-  // if (recANG.xPos + recANG.width >= VBar.xPos
-  //   && recANG.xPos + recANG.xSPEED < VBar.xPos + VBar.width
-  //   && recANG.yPos + recANG.height > VBar.yPos
-  //   && recANG.yPos < VBar.yPos + VBar.heght
-  // ) {
-  //   colorChange();
-  //   recANG.xSPEED = recANG.xSPEED * -1.00;
-  // }
+  // colorChange();
 
-  // if (recANG.xPos + recANG.width >= VBar.xPos
-  //   && recANG.xPos < VBar.xPos + VBar.width
-  //   && recANG.yPos + recANG.height > VBar.yPos
-  //   && recANG.yPos + recANG.ySPEED < VBar.yPos + VBar.heght
-  // ) {
-  //   colorChange();
-  //   recANG.ySPEED = recANG.ySPEED * -1.00;
-  // }
-
-  recANG.xPos += recANG.xSPEED;
-  recANG.yPos += recANG.ySPEED;
-
-  rect(VBar3.xPos, VBar3.yPos, VBar3.width, VBar3.heght);
-  rect(VBar2.xPos, VBar2.yPos, VBar2.width, VBar2.heght);
-  rect(recANG.xPos, recANG.yPos, recANG.width, recANG.height);
+  rect(ball.xPos, ball.yPos, ball.width, ball.height);
 
   return 0;
 }
+
+var totalClicks = 0;
+
+function mouseClicked(ball){
+
+  if(mouseClicked){
+    totalClicks++;
+
+      if(mouseButton === LEFT){
+        let newBarrior = {
+          xPos: random(0, width),
+          yPos: random(0, 100),
+          width: random(100, 150),
+          heght: 10,
+        };
+        rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
+        gettingHits(ball, newBarrior);
+        colorChange(); 
+      }
+      else if(mouseButton === RIGHT){
+        let newBarrior = {
+          xPos: random(0, width),
+          yPos: random(height-150, height),
+          width: random(100, 150),
+          heght: 10,
+        };
+        rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
+        gettingHits(ball, newBarrior);
+        colorChange(); 
+      }
+  }
+
+}
+
+
+// var backX = 35;
+// var backY = 25;
+
+// function backgroundDisco(){
+
+//   push();
+
+//     translate(width/2, height/2);
+//     rotate(PI/4);
+//     rectMode(CENTER);
+    
+//     noFill();
+//     stroke('rgba(255,0,255,0.75)');
+//     strokeWeight(2);
+
+//     rect(0,0, backX,backY);
+    
+//     backX++;
+//     backY++;
+
+
+//     while(backX >= 150){
+//       backX--;
+//       backY--;
+//     }
+
+//     pop();
+// }
 
 function colorChange() {
   color.r = random(255);
   color.g = random(255);
   color.b = random(255);
+}
+// var prevVal = 0;
+// function selectColor(){
+//   var colorList = ['#581845', '#900c3f', '#c70039', '#ffs733', '#ffc505'];
+//   console.log(colorList[0]);
+
+//   var newVal = random(0,4);
+
+//   while(prevVal == newVal){
+//     newVal = random(0,4);
+//   }
+
+//   prevVal = newVal;
+
+//   console.log(colorList[prevVal]);
+//   return colorList[prevVal];
+
+// }
+
+function gettingHits(ball, barrior){
+  if (ball.xPos + ball.width + ball.xSPEED>= barrior.xPos
+    && ball.xPos + ball.xSPEED < barrior.xPos + barrior.width
+    && ball.yPos + ball.height > barrior.yPos
+    && ball.yPos < barrior.yPos + barrior.heght
+  ) {
+    // colorChange();
+    ball.xSPEED = ball.xSPEED * -1.00;
+  }
+
+  if (ball.xPos + ball.width >= barrior.xPos
+    && ball.xPos < barrior.xPos + barrior.width
+    && ball.yPos + ball.height +ball.ySPEED> barrior.yPos
+    && ball.yPos + ball.ySPEED < barrior.yPos + barrior.heght
+  ) {
+    // colorChange();
+    ball.ySPEED = ball.ySPEED * -1.00;
+  }
 }
