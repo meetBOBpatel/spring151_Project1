@@ -54,14 +54,18 @@ let barrior5= {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(51);
+  // background(255);
   // angleMode(DEGREES);
 }
 
 function draw() {
 
-background(51);
-// backgroundDisco();
+background(0);
+push();
+backgroundShow();
+pop();
+
+// noStroke();
 
 if (ball.xPos > windowWidth - 25 || ball.xPos < 25) {
   ball.xSPEED = ball.xSPEED * -1.00;
@@ -95,9 +99,11 @@ ball.yPos += ball.ySPEED;
   pop();
 
   // colorChange();
-
+push();
+// colorChange();
+fill('orange')
   rect(ball.xPos, ball.yPos, ball.width, ball.height);
-
+pop();
   return 0;
 }
 
@@ -130,6 +136,23 @@ function mouseClicked(ball){
         gettingHits(ball, newBarrior);
         colorChange(); 
       }
+  }
+
+}
+
+function backgroundShow(){
+
+  var rectangles = [];
+
+  for(var i = 0; i < 500; i++){
+    noStroke();
+    // fill(random(255), random(255), random(255), 10);
+    fill(199, 36, 177, 10);
+    // fill(207, 255, 4, 10);
+    stroke(199, 36, 177, 15);
+    
+    rotate(PI/4);
+    rectangles[i] = rect(random(0, width), random(0, height), random(50, 100), random(50, 100));
   }
 
 }
