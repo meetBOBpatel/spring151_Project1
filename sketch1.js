@@ -54,17 +54,23 @@ let barrior5= {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  d = height -10;
   // background(255);
   // angleMode(DEGREES);
 }
 
 function draw() {
 
-background(0);
-push();
-backgroundShow();
-pop();
+background('slategray');
 
+// push();
+// backgroundShow();
+// pop();
+push();
+
+BG();
+
+pop();
 // noStroke();
 
 if (ball.xPos > windowWidth - 25 || ball.xPos < 25) {
@@ -89,7 +95,7 @@ ball.yPos += ball.ySPEED;
     // colorChange();
     fill(color.r, color.g, color.b);
     mouseClicked(ball);
-
+    noStroke();
     rect(barrior.xPos, barrior.yPos, barrior.width, barrior.heght);
     rect(barrior2.xPos, barrior2.yPos, barrior2.width, barrior2.heght);
     rect(barrior3.xPos, barrior3.yPos, barrior3.width, barrior3.heght);
@@ -139,6 +145,41 @@ function mouseClicked(ball){
   }
 
 }
+
+var d;
+var theta = 0;
+
+function BG() {
+  var s1 = 10 + (sin(theta + PI/2) *d)/40 + d/20;
+  let s2 = 10 + (sin(theta) * d) / 80 + d / 40;
+  // var s3 = 10 + (sin(theta + PI) * d) / 8 + d / 4;
+
+    for (let x = 50; x <= width; x += 100) {
+      for (let y = 50; y <= height; y += 100) {
+          
+        stroke(0, 0, 0, 25);
+        strokeWeight(s1);
+        point(x, y);
+      }
+    }
+
+    for (let x = 0; x <= width; x += 100) {
+      for (let y = 0; y <= height; y += 100) {
+        stroke(255, 255, 255, 50);
+        strokeWeight(s2);
+        point(x, y);
+      }
+    }
+
+  theta += 0.02;
+}
+
+
+
+
+
+
+
 
 function backgroundShow(){
 
