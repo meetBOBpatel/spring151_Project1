@@ -5,14 +5,14 @@
   function setup() {
     createCanvas(windowWidth, windowHeight);
     d = height -10;
-    //  (CENTER);
+    
 
   }
   
   function draw() {
     // frameRate(30);
     background(51);
-    // var s1 = 10 + (sin(theta + PI/2) *d)/8 + d/4;
+
     var s1 = 10 + (sin(theta + PI/2) *d)/40 + d/20;
     let s2 = 10 + (sin(theta) * d) / 80 + d / 40;
     var s3 = 10 + (sin(theta + PI) * d) / 8 + d / 4;

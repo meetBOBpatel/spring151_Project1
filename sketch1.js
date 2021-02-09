@@ -52,7 +52,8 @@ let barrior5= {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   d = height -10;
-  colorMode(HSB, 255);
+
+  alert("The ball movies through the plain, and collides with barrior. There are more barriors that are created with the use of mouse. Use LEFT MOUSE click to create barriors at top and use RIGHT MOUSE click to create barrioirs at bottom. To stop press MIDDLE MOUSE button. The background breaths in and out giving a perspective of barriors moving up and down.");
 
 }
 
@@ -74,11 +75,13 @@ if (ball.yPos > windowHeight - 25 || ball.yPos < 25) {
   ball.ySPEED = ball.ySPEED * -1.00;
 }
 
-gettingHits(ball, barrior);
-gettingHits(ball, barrior2);
-gettingHits(ball, barrior3);
-gettingHits(ball, barrior4);
-gettingHits(ball, barrior5);
+push();
+  gettingHits(ball, barrior);
+  gettingHits(ball, barrior2);
+  gettingHits(ball, barrior3);
+  gettingHits(ball, barrior4);
+  gettingHits(ball, barrior5);
+pop();
 
 ball.xPos += ball.xSPEED;
 ball.yPos += ball.ySPEED;
@@ -151,8 +154,6 @@ function BG(ball) {
 
   var s1 = 10 + (sin(theta + PI/2) *d)/40 + d/20;
   let s2 = 10 + (sin(theta) * d) / 80 + d / 40;
-  // var s3 = 10 + (sin(theta + PI) * d) / 8 + d / 4;
-
   // line(ball.width, ball.heght, ball.xPos, ball.yPos);
 
     for (let x = 50; x <= width; x += 100) {
@@ -183,10 +184,8 @@ function BG(ball) {
         strokeWeight(s1);
         point(x, y);
 
-
       }
     }
-
   theta += 0.02;
 }
 
@@ -197,6 +196,9 @@ function colorChange() {
 }
 
 function gettingHits(ball, barrior){
+
+  colorMode(HSB, 255);
+
   if (ball.xPos + ball.width + ball.xSPEED>= barrior.xPos
     && ball.xPos + ball.xSPEED < barrior.xPos + barrior.width
     && ball.yPos + ball.height > barrior.yPos
