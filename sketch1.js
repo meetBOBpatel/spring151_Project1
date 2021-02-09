@@ -52,6 +52,7 @@ let barrior5= {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   d = height -10;
+  colorMode(HSB, 255);
 
   alert("Collide - Project 1: The ball movies through the window, and collides with the barriors. There are more barriors that can be created with the use of mouse. Use LEFT MOUSE click to create barriors at top and use RIGHT MOUSE click to create barrioirs at bottom. To stop press MIDDLE MOUSE button. The background breaths in and out giving a perspective of barriors moving up and down and background color changes on the position of the ball.");
 
@@ -197,7 +198,6 @@ function colorChange() {
 
 function gettingHits(ball, barrior){
 
-  colorMode(HSB, 255);
 
   if (ball.xPos + ball.width + ball.xSPEED>= barrior.xPos
     && ball.xPos + ball.xSPEED < barrior.xPos + barrior.width
