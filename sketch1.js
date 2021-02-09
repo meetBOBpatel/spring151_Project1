@@ -57,8 +57,8 @@ function setup() {
 }
 
 function draw() {
-background('slategray');
-// background('#ffffff05');
+// background('slategray');
+background('#ffffff05');
 
 
 push();
@@ -146,27 +146,44 @@ var d;
 var theta = 0;
 
 function BG(ball) {
+
+  // background('#ffffff05');
+
   var s1 = 10 + (sin(theta + PI/2) *d)/40 + d/20;
   let s2 = 10 + (sin(theta) * d) / 80 + d / 40;
   // var s3 = 10 + (sin(theta + PI) * d) / 8 + d / 4;
+
+  // line(ball.width, ball.heght, ball.xPos, ball.yPos);
 
     for (let x = 50; x <= width; x += 100) {
       for (let y = 50; y <= height; y += 100) {
           
         let m = map(ball.xPos, 0, width, 100, 225);
-        stroke(m, m, m, m, 50);
-        strokeWeight(s1, 44);
+        stroke(90,m, 50, 30);
+        strokeWeight(s1);
         point(x, y);
+
+        stroke(90,m, 50, 10);
+        strokeWeight(s2);
+        point(x, y);
+        // point(y-width,x);
       }
     }
 
     for (let x = 0; x <= width; x += 100) {
       for (let y = 0; y <= height; y += 100) {
-        var m2 = map(ball.yPos, 0, height, 100, 214);
+        let m2 = map(ball.yPos, 0, height, 50, 190);
         // stroke(255, 255, 255, 50);
-        stroke(m2);
+        stroke(180, m2, m2, 10);
         strokeWeight(s2);
+        
         point(x, y);
+
+        stroke(180, m2, 0, 30);
+        strokeWeight(s1);
+        point(x, y);
+
+
       }
     }
 
