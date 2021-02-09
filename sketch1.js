@@ -49,29 +49,22 @@ let barrior5= {
   heght: 10,
 };
 
-
-
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   d = height -10;
-  // background(255);
-  // angleMode(DEGREES);
+  colorMode(HSB, 255);
+
 }
 
 function draw() {
-
 background('slategray');
+// background('#ffffff05');
 
-// push();
-// backgroundShow();
-// pop();
+
 push();
-
-BG();
-
+  BG(ball);
 pop();
-// noStroke();
+
 
 if (ball.xPos > windowWidth - 25 || ball.xPos < 25) {
   ball.xSPEED = ball.xSPEED * -1.00;
@@ -92,10 +85,11 @@ ball.yPos += ball.ySPEED;
 
   push();
   
-    // colorChange();
     fill(color.r, color.g, color.b);
     mouseClicked(ball);
     noStroke();
+
+    
     rect(barrior.xPos, barrior.yPos, barrior.width, barrior.heght);
     rect(barrior2.xPos, barrior2.yPos, barrior2.width, barrior2.heght);
     rect(barrior3.xPos, barrior3.yPos, barrior3.width, barrior3.heght);
@@ -104,52 +98,54 @@ ball.yPos += ball.ySPEED;
 
   pop();
 
-  // colorChange();
 push();
-// colorChange();
 fill('orange')
+var h = 0;
+// fill(43, 255, 53)
   rect(ball.xPos, ball.yPos, ball.width, ball.height);
 pop();
   return 0;
 }
 
 var totalClicks = 0;
-
 function mouseClicked(ball){
 
-  if(mouseClicked){
-    totalClicks++;
+push();
+  noStroke();
+    if(mouseClicked){
+      totalClicks++;
 
-      if(mouseButton === LEFT){
-        let newBarrior = {
-          xPos: random(0, width),
-          yPos: random(0, 100),
-          width: random(100, 150),
-          heght: 10,
-        };
-        rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
-        gettingHits(ball, newBarrior);
-        colorChange(); 
-      }
-      else if(mouseButton === RIGHT){
-        let newBarrior = {
-          xPos: random(0, width),
-          yPos: random(height-150, height),
-          width: random(100, 150),
-          heght: 10,
-        };
-        rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
-        gettingHits(ball, newBarrior);
-        colorChange(); 
-      }
-  }
+        if(mouseButton === LEFT){
+          let newBarrior = {
+            xPos: random(0, width),
+            yPos: random(0, 100),
+            width: random(100, 150),
+            heght: 10,
+          };
+          rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
+          gettingHits(ball, newBarrior);
+          colorChange(); 
+        }
+        else if(mouseButton === RIGHT){
+          let newBarrior = {
+            xPos: random(0, width),
+            yPos: random(height-150, height),
+            width: random(100, 150),
+            heght: 10,
+          };
+          rect(newBarrior.xPos, newBarrior.yPos, newBarrior.width, newBarrior.heght);
+          gettingHits(ball, newBarrior);
+          colorChange(); 
+        }
+    }
+  pop();
 
 }
 
 var d;
 var theta = 0;
 
-function BG() {
+function BG(ball) {
   var s1 = 10 + (sin(theta + PI/2) *d)/40 + d/20;
   let s2 = 10 + (sin(theta) * d) / 80 + d / 40;
   // var s3 = 10 + (sin(theta + PI) * d) / 8 + d / 4;
@@ -157,15 +153,18 @@ function BG() {
     for (let x = 50; x <= width; x += 100) {
       for (let y = 50; y <= height; y += 100) {
           
-        stroke(0, 0, 0, 25);
-        strokeWeight(s1);
+        let m = map(ball.xPos, 0, width, 100, 225);
+        stroke(m, m, m, m, 50);
+        strokeWeight(s1, 44);
         point(x, y);
       }
     }
 
     for (let x = 0; x <= width; x += 100) {
       for (let y = 0; y <= height; y += 100) {
-        stroke(255, 255, 255, 50);
+        var m2 = map(ball.yPos, 0, height, 100, 214);
+        // stroke(255, 255, 255, 50);
+        stroke(m2);
         strokeWeight(s2);
         point(x, y);
       }
@@ -174,82 +173,11 @@ function BG() {
   theta += 0.02;
 }
 
-
-
-
-
-
-
-
-function backgroundShow(){
-
-  var rectangles = [];
-
-  for(var i = 0; i < 500; i++){
-    noStroke();
-    // fill(random(255), random(255), random(255), 10);
-    fill(199, 36, 177, 10);
-    // fill(207, 255, 4, 10);
-    stroke(199, 36, 177, 15);
-    
-    rotate(PI/4);
-    rectangles[i] = rect(random(0, width), random(0, height), random(50, 100), random(50, 100));
-  }
-
-}
-
-
-// var backX = 35;
-// var backY = 25;
-
-// function backgroundDisco(){
-
-//   push();
-
-//     translate(width/2, height/2);
-//     rotate(PI/4);
-//     rectMode(CENTER);
-    
-//     noFill();
-//     stroke('rgba(255,0,255,0.75)');
-//     strokeWeight(2);
-
-//     rect(0,0, backX,backY);
-    
-//     backX++;
-//     backY++;
-
-
-//     while(backX >= 150){
-//       backX--;
-//       backY--;
-//     }
-
-//     pop();
-// }
-
 function colorChange() {
-  color.r = random(255);
-  color.g = random(255);
-  color.b = random(255);
+  color.r = random(150, 220);
+  color.g = random(100, 255);
+  color.b = random(100, 220);
 }
-// var prevVal = 0;
-// function selectColor(){
-//   var colorList = ['#581845', '#900c3f', '#c70039', '#ffs733', '#ffc505'];
-//   console.log(colorList[0]);
-
-//   var newVal = random(0,4);
-
-//   while(prevVal == newVal){
-//     newVal = random(0,4);
-//   }
-
-//   prevVal = newVal;
-
-//   console.log(colorList[prevVal]);
-//   return colorList[prevVal];
-
-// }
 
 function gettingHits(ball, barrior){
   if (ball.xPos + ball.width + ball.xSPEED>= barrior.xPos
@@ -257,7 +185,6 @@ function gettingHits(ball, barrior){
     && ball.yPos + ball.height > barrior.yPos
     && ball.yPos < barrior.yPos + barrior.heght
   ) {
-    // colorChange();
     ball.xSPEED = ball.xSPEED * -1.00;
   }
 
@@ -266,7 +193,6 @@ function gettingHits(ball, barrior){
     && ball.yPos + ball.height +ball.ySPEED> barrior.yPos
     && ball.yPos + ball.ySPEED < barrior.yPos + barrior.heght
   ) {
-    // colorChange();
     ball.ySPEED = ball.ySPEED * -1.00;
   }
 }
