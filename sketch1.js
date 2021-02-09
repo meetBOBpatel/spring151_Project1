@@ -53,7 +53,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   d = height -10;
 
-  alert("Hit The Brick - Project 1: The ball movies through the plain, and collides with barriors. There are more barriors that are created with the use of mouse. Use LEFT MOUSE click to create barriors at top and use RIGHT MOUSE click to create barrioirs at bottom. To stop press MIDDLE MOUSE button. The background breaths in and out giving a perspective of barriors moving up and down.");
+  alert("Collide - Project 1: The ball movies through the window, and collides with the barriors. There are more barriors that can be created with the use of mouse. Use LEFT MOUSE click to create barriors at top and use RIGHT MOUSE click to create barrioirs at bottom. To stop press MIDDLE MOUSE button. The background breaths in and out giving a perspective of barriors moving up and down and background color changes on the position of the ball.");
 
 }
 
